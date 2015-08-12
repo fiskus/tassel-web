@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  h2= errorMessage
+  form(method='post')
+    p
+      input(type='text', id='username', name='username', placeholder='Username')
+      input(type='password', id='password', name='password', placeholder='Password')
+      input(type='submit', value='Register')
