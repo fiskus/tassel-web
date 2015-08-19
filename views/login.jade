@@ -5,21 +5,21 @@ block content
   h2= errorMessage
   form.loginpanel(method='post')
     .txt
-      input(id="username" name="username" type="text" placeholder="Username")
-      label(for="username")
+      input.input(id="username" name="username" type="text" placeholder="Username")
+      label.label(for="username")
     .txt
-      input(id="password" name="password" type="password" placeholder="Password")
-      label(for="pwd")
+      input.input(id="password" name="password" type="password" placeholder="Password")
+      label.label(for="pwd")
     .buttons
-      input(type="submit" value="Login")
-      span
+      input.submit(type="submit" value="Login")
+      span.register-wrapper
         a.register(href="/register") Register
     .hr
-      div
-      div OR
-      div
+      div.hr-line
+      div.hr-text OR
+      div.hr-line
     .social
-      a.facebook(href="javascript:void(0)")
-      a.twitter(href="javascript:void(0)")
-      a.googleplus(href="javascript:void(0)")
+      a.social-link.facebook(href="javascript:void(0)")
+      a.social-link.twitter(href="javascript:void(0)")
+      a.social-link.googleplus(href="javascript:void(0)")
   span.resp-info
