@@ -1,7 +1,8 @@
 import React from 'react';
 
 class InputUI extends React.Component {
-    constructror () {
+    constructror (props) {
+        super(props);
         this.displayName = 'InputUI';
     }
     render () {

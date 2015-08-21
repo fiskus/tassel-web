@@ -3,7 +3,8 @@ import React from 'react';
 import InputUI from '../ui/input.jsx';
 
 class FormUI extends React.Component {
-    constructror () {
+    constructror (props) {
+        super(props);
         this.displayName = 'FormUI';
     }
     _onSubmit (event) {
