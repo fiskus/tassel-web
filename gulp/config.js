@@ -1,7 +1,7 @@
 var path = require('path');
 
 function buildDir (str) {
-    return path.join(__dirname, '../public', str);
+    return path.join(__dirname, '../assets', str);
 }
 
 function srcDir (str) {

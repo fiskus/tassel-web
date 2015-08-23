@@ -1,5 +1,5 @@
 node_modules
 .*.swp
 .tern-port
-public/stylesheets
-public/javascripts
+assets/stylesheets
+assets/javascripts
