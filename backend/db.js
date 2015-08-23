@@ -4,7 +4,7 @@ var knex = require('knex')({
         host: '127.0.0.1',
         user: 'root',
         password: '',
-        database: 'dbUsers',
+        database: 'tasselUsers',
         charset: 'UTF8_GENERAL_CI'
     }
 });
@@ -12,7 +12,7 @@ var knex = require('knex')({
 var bookshelf = require('bookshelf')(knex);
 
 var User = bookshelf.Model.extend({
-    tableName: 'tblUsers',
+    tableName: 'users',
     idAttribute: 'userId'
 });
 

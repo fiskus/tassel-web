@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
@@ -23,7 +25,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
-app.use(require('express-session')({
+app.use(session({
+    store: new RedisStore(),
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false

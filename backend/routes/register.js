@@ -15,14 +15,15 @@ function getRegister (req, res) {
     }
 }
 
-function postRegister (req, res) {
+function postRegister (req, res, next) {
     var user = req.body;
-    return Register(user.username, user.password)
+    Register(user.username, user.password)
         .then(function () {
             res.redirect('/login');
         }, function (err) {
             renderRegister(err, res);
-        });
+        })
+        .then(next);
 }
 
 module.exports = {

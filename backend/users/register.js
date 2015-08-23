@@ -1,7 +1,9 @@
 var Promise = require('bluebird');
-var bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
+var bcrypt = require('bcrypt-nodejs');
 
 var DB = require('../db.js');
+
+function noop () {}
 
 function requestUser (username) {
     return new DB.User({
@@ -9,22 +11,35 @@ function requestUser (username) {
     }).fetch();
 }
 
-function Register (username, password) {
-    return requestUser(username).then(function (existedUser) {
-        if (existedUser) {
-            throw new Error('Username already exists');
-        } else {
-            return bcrypt.hash(password).then(function (hash) {
-                return new DB.User({
+function registerUser (username, password) {
+    return new Promise(function (resolve, reject) {
+        bcrypt.hash(password, '', noop, function (err, hash) {
+            if (err) {
+                reject(err);
+            } else {
+                var newUser = new DB.User({
                     username: username,
                     password: hash
                 });
-            }).then(function (newUser) {
-                newUser.save();
-            });
-        }
+                resolve(newUser);
+            }
+        });
     });
+}
 
+function Register (username, password) {
+    return requestUser(username)
+        .then(function (existedUser) {
+            if (existedUser) {
+                throw new Error('Username already exists');
+            } else {
+                return registerUser(username, password);
+            }
+        })
+        .then(function (newUser) {
+            newUser.save();
+            return newUser;
+        });
 }
 
 module.exports = Register;

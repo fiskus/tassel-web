@@ -6,7 +6,13 @@ function LogIn (req, user) {
             if (error) {
                 reject(error);
             } else {
-                resolve();
+                req.session.save(function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve();
+                    }
+                });
             }
         });
     });
