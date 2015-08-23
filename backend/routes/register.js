@@ -1,5 +1,5 @@
-var bluebird = require('bluebird');
-var bcrypt = bluebird.promisifyAll(require('bcrypt-nodejs'));
+var Promise = require('bluebird');
+var bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'));
 
 var DB = require('../db.js');
 

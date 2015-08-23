@@ -1,5 +1,7 @@
 var passport = require('passport');
 
+var Login = require('../users/login.js');
+
 function renderLogin (err, res) {
     return res.render('login', {
         title: 'Log In',
@@ -11,9 +13,7 @@ function getLogin (req, res) {
     if (req.isAuthenticated()) {
         res.redirect('/');
     } else {
-        res.render('login', {
-            title: 'Log In'
-        });
+        renderLogin(null, res);
     }
 }
 
@@ -27,12 +27,10 @@ function postLogin (req, res, next) {
             renderLogin(err.message, res);
         }
         if (user) {
-            req.logIn(user, function (error) {
-                if (error) {
-                    renderLogin(error.message, res);
-                } else {
-                    res.redirect('/');
-                }
+            Login(req, user).then(function () {
+                res.redirect('/');
+            }, function (error) {
+                renderLogin(error.message, res);
             });
         } else {
             renderLogin(info.message, res);
