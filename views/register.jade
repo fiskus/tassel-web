@@ -1,10 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  h2= errorMessage
-  form(method='post')
-    p
-      input(type='text', id='username', name='username', placeholder='Username')
-      input(type='password', id='password', name='password', placeholder='Password')
-      input(type='submit', value='Register')
+  if errorMessage
+    .error= errorMessage
+
+  form.loginpanel(method='post')
+    .txt
+      input.input(id="username" name="username" type="text" placeholder="Username")
+      label.label(for="username")
+    .txt
+      input.input(id="password" name="password" type="password" placeholder="Password")
+      label.label(for="password")
+    .buttons
+      input.submit(type="submit" value="Register")

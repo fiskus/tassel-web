@@ -1,15 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  h2= errorMessage
+  if errorMessage
+    .error= errorMessage
+
   form.loginpanel(method='post')
     .txt
       input.input(id="username" name="username" type="text" placeholder="Username")
       label.label(for="username")
     .txt
       input.input(id="password" name="password" type="password" placeholder="Password")
-      label.label(for="pwd")
+      label.label(for="password")
     .buttons
       input.submit(type="submit" value="Login")
       span.register-wrapper

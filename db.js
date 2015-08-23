@@ -17,6 +17,5 @@ var User = bookshelf.Model.extend({
 });
 
 module.exports = {
-    DB: bookshelf,
     User: User
 };
