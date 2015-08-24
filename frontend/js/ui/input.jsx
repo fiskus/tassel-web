@@ -1,9 +1,16 @@
 import React from 'react';
+import Actions from '../actions.js';
 
 class InputUI extends React.Component {
     constructror (props) {
         super(props);
         this.displayName = 'InputUI';
+    }
+    _onKeyPress (event) {
+        Actions.onKeyPress({
+            which: event.which,
+            value: event.currentTarget.value
+        });
     }
     render () {
         return (
@@ -12,7 +19,7 @@ class InputUI extends React.Component {
                        ref="input"
                        type="text"
                        placeholder="Input URL to save or keyword to search"
-                       onKeyPress={this.props.ON_KEY}
+                       onKeyPress={this._onKeyPress}
                        onPaste={this.props.ON_PASTE}
                 />
             </div>
