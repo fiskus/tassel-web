@@ -1,4 +1,7 @@
-var knex = require('knex')({
+var knex = require('knex');
+var bookshelf = require('bookshelf');
+
+var userDBSettings = {
     client: 'mysql',
     connection: {
         host: '127.0.0.1',
@@ -7,15 +10,13 @@ var knex = require('knex')({
         database: 'tasselUsers',
         charset: 'UTF8_GENERAL_CI'
     }
-});
+};
 
-var bookshelf = require('bookshelf')(knex);
+var UsersDB = bookshelf(knex(userDBSettings));
 
-var User = bookshelf.Model.extend({
+var User = UsersDB.Model.extend({
     tableName: 'users',
     idAttribute: 'userId'
 });
 
-module.exports = {
-    User: User
-};
+module.exports = User;

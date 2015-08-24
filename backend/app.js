@@ -11,7 +11,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
 var routes = require('./routes/index');
-var DB = require('./db.js');
+var DBUser = require('./db/users.js');
 
 var app = express();
 
@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, '../assets')));
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        DB.User.where({
+        DBUser.where({
             username: username
         }).fetch().then(function (user) {
             if (user) {
@@ -59,7 +59,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-    DB.User.where({
+    DBUser.where({
         userId: id
     }).fetch().then(function (user) {
         done(null, user);
