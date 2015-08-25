@@ -1,26 +1,29 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/tassel.css')
+  body
+    if errorMessage
+      .error= errorMessage
 
-block content
-  if errorMessage
-    .error= errorMessage
-
-  form.loginpanel(method='post')
-    .txt
-      input.input(id="username" name="username" type="text" placeholder="Username")
-      label.label(for="username")
-    .txt
-      input.input(id="password" name="password" type="password" placeholder="Password")
-      label.label(for="password")
-    .buttons
-      input.submit(type="submit" value="Login")
-      span.register-wrapper
-        a.register(href="/register") Register
-    .hr
-      div.hr-line
-      div.hr-text OR
-      div.hr-line
-    .social
-      a.social-link.facebook(href="javascript:void(0)")
-      a.social-link.twitter(href="javascript:void(0)")
-      a.social-link.googleplus(href="javascript:void(0)")
-  span.resp-info
+    form.loginpanel(method='post')
+      .txt
+        input.input(id="username" name="username" type="text" placeholder="Username")
+        label.label(for="username")
+      .txt
+        input.input(id="password" name="password" type="password" placeholder="Password")
+        label.label(for="password")
+      .buttons
+        input.submit(type="submit" value="Login")
+        span.register-wrapper
+          a.register(href="/register") Register
+      .hr
+        div.hr-line
+        div.hr-text OR
+        div.hr-line
+      .social
+        a.social-link.facebook(href="javascript:void(0)")
+        a.social-link.twitter(href="javascript:void(0)")
+        a.social-link.googleplus(href="javascript:void(0)")
+    span.resp-info
