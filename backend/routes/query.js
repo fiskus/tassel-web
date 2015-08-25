@@ -1,20 +1,30 @@
-var DBBookmarks = require('../db/bookmarks.js');
+var DB = require('../db/index.js');
 
 function renderJson (res, json) {
     res.set('Content-Type', 'application/json; charset=utf-8');
     res.send(json);
 }
 
-function Query (req, res) {
-    DBBookmarks.fetchAll().then(function (bookmarks) {
-        var urls = bookmarks.map(function (bookmark) {
-            return {
-                title: bookmark.get('title'),
-                url: bookmark.get('url')
-            };
-        });
-        renderJson(res, urls);
+function serialize (bookmarks) {
+    return bookmarks.map(function (bookmark) {
+        return {
+            title: bookmark.get('title'),
+            url: bookmark.get('url')
+        };
     });
+}
+
+function Query (req, res) {
+    if (req.isAuthenticated()) {
+        DB.Bookmarks
+            .fetchAll()
+            .then(serialize)
+            .then(function (bookmarks) {
+                renderJson(res, bookmarks);
+            });
+    } else {
+        renderJson(res, []);
+    }
 }
 
 

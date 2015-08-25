@@ -1,12 +1,12 @@
 var Promise = require('bluebird');
 var bcrypt = require('bcrypt-nodejs');
 
-var DBUser = require('../db/users.js');
+var DB = require('../db/index.js');
 
 function noop () {}
 
 function requestUser (username) {
-    return new DBUser({
+    return new DB.Users({
         username: username
     }).fetch();
 }
@@ -17,7 +17,7 @@ function registerUser (username, password) {
             if (err) {
                 reject(err);
             } else {
-                var newUser = new DBUser({
+                var newUser = new DB.Users({
                     username: username,
                     password: hash
                 });
