@@ -15,7 +15,7 @@ class InputUI extends React.Component {
     render () {
         return (
             <div className="input-wrapper">
-                <input className="input"
+                <input className="main-input"
                        ref="input"
                        type="text"
                        placeholder="Input URL to save or keyword to search"
