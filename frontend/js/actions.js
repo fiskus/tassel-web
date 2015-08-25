@@ -6,6 +6,9 @@ var Actions = {
     },
     onKeyPress (event) {
         Dispatcher.onKeyPress(event);
+    },
+    onSubmit (event) {
+        Dispatcher.onSubmit(event);
     }
 };
 

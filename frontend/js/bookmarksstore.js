@@ -12,9 +12,13 @@ var Store = Delorean.Flux.createStore({
         });
         this.emit('change');
     },
+    onSubmit ({value}) {
+        console.log('SUBMIT', value);
+    },
     actions: {
         'bookmarks': 'setBookmarks',
-        'onkeypress': 'onKeyPress'
+        'onkeypress': 'onKeyPress',
+        'onsubmit': 'onSubmit'
     }
 });
 

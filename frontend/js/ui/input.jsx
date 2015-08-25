@@ -12,6 +12,12 @@ class InputUI extends React.Component {
             value: event.currentTarget.value
         });
     }
+    _onPaste (event) {
+        Actions.onKeyPress({
+            which: null,
+            value: event.currentTarget.value
+        });
+    }
     render () {
         return (
             <div className="input-wrapper">
@@ -20,7 +26,7 @@ class InputUI extends React.Component {
                        type="text"
                        placeholder="Input URL to save or keyword to search"
                        onKeyPress={this._onKeyPress}
-                       onPaste={this.props.ON_PASTE}
+                       onPaste={this._onPaste}
                 />
             </div>
         );

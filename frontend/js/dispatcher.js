@@ -8,6 +8,9 @@ var Dispatcher = Delorean.Flux.createDispatcher({
     onKeyPress (event) {
         this.dispatch('onkeypress', event);
     },
+    onSubmit (event) {
+        this.dispatch('onsubmit', event);
+    },
     getStores () {
         return {
             bookmarks: BookmarksStore
