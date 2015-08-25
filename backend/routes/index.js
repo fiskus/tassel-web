@@ -4,6 +4,7 @@ var router = express.Router();
 var login = require('../routes/login.js');
 var register = require('../routes/register.js');
 var query = require('../routes/query.js');
+var update = require('../routes/update.js');
 
 router.get('/', function (req, res) {
     if (!req.isAuthenticated()) {
@@ -22,6 +23,8 @@ router.get('/', function (req, res) {
 });
 
 router.get('/query', query);
+
+router.post('/update', update);
 
 router.get('/login', login.getLogin);
 router.post('/login', login.postLogin);

@@ -10,7 +10,7 @@ BookmarksStore.onChange(() => {
     console.log('!!!!!!!!', BookmarksStore.bookmarks);
 });
 
-superagent.get('/query').then((res) => {
+superagent.get('/query').then(res => {
     Actions.setBookmarks(res.body);
 });
 
