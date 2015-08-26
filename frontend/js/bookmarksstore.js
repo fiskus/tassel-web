@@ -13,7 +13,6 @@ var Store = Delorean.Flux.createStore({
         return this.filtered;
     },
     onKeyPress (event) {
-        console.log('onKeyPress', event.value);
         this.filtered = this.bookmarks.filter(bookmark => {
             if (!event.value) {
                 return true;

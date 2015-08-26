@@ -12,7 +12,7 @@ class MainUI extends React.Component {
         return (
             <div className="tassel-main">
                 <FormUI />
-                <ListUI ref="list" />
+                <ListUI />
             </div>
         );
     }

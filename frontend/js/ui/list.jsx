@@ -1,6 +1,8 @@
 import React from 'react';
 import superagent from 'superagent-bluebird-promise';
 
+import BookmarksStore from '../bookmarksstore.js';
+
 var ListUI = React.createClass({
     displayName: 'ListUI',
     getInitialState () {
@@ -9,11 +11,11 @@ var ListUI = React.createClass({
         };
     },
     componentDidMount () {
-        /* superagent.get('/query').then((res) => {
-           this.setState({
-           bookmarks: res.body
-           });
-           }); */
+        BookmarksStore.onChange(() => {
+            this.setState({
+                bookmarks: BookmarksStore.getFiltered()
+            });
+        });
     },
     _createBookmark (bookmark, index) {
         var title = bookmark.title || bookmark.url;
