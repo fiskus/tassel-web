@@ -40,8 +40,8 @@ function Update (req, res) {
         .then(function () {
             renderJson(res, {
                 success: true,
-                session: req.session,
-                isAuthenticated: req.isAuthenticated()
+                title: title,
+                url: url
             });
         });
 }

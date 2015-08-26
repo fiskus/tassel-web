@@ -25,7 +25,7 @@ class InputUI extends React.Component {
                        ref="input"
                        type="text"
                        placeholder="Input URL to save or keyword to search"
-                       onKeyPress={this._onKeyPress}
+                       onKeyDown={this._onKeyPress}
                        onPaste={this._onPaste}
                 />
             </div>

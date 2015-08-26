@@ -9,11 +9,11 @@ var ListUI = React.createClass({
         };
     },
     componentDidMount () {
-        superagent.get('/query').then((res) => {
-            this.setState({
-                bookmarks: res.body
-            });
-        });
+        /* superagent.get('/query').then((res) => {
+           this.setState({
+           bookmarks: res.body
+           });
+           }); */
     },
     _createBookmark (bookmark, index) {
         var title = bookmark.title || bookmark.url;

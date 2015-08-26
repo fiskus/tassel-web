@@ -7,11 +7,13 @@ import Actions from './actions.js';
 import BookmarksStore from './bookmarksstore.js';
 
 BookmarksStore.onChange(() => {
-    console.log('!!!!!!!!', BookmarksStore.bookmarks);
+    mainUI.refs.list.setState({
+        bookmarks: BookmarksStore.getFiltered()
+    });
 });
 
 superagent.get('/query').then(res => {
     Actions.setBookmarks(res.body);
 });
 
-React.render(React.createElement(MainUI, {}), document.body);
+var mainUI = React.render(React.createElement(MainUI, {}), document.body);
