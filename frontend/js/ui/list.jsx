@@ -16,9 +16,10 @@ var ListUI = React.createClass({
         });
     },
     _createBookmark (bookmark, index) {
+        var title = bookmark.title || bookmark.url;
         return (
             <div className="bookmark" key={index}>
-                <a href={bookmark.url}>{bookmark.title}</a>
+                <a href={bookmark.url}>{title}</a>
             </div>
         );
     },

@@ -17,6 +17,9 @@ function serialize (bookmarks) {
 function Query (req, res) {
     if (req.isAuthenticated()) {
         DB.Bookmarks
+            .where({
+                userId: req.session.passport.user
+            })
             .fetchAll()
             .then(serialize)
             .then(function (bookmarks) {
