@@ -1,5 +1,5 @@
 import Delorean from 'delorean';
-import BookmarksStore from './bookmarksstore.js';
+import BookmarksStore from './stores/bookmarksstore.js';
 
 var Dispatcher = Delorean.Flux.createDispatcher({
     setBookmarks (bookmarks) {
