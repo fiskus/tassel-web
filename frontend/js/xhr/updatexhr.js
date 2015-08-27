@@ -9,6 +9,10 @@ function createSuccessMessage (response) {
     return `Sent ${response.url} "${response.title}" successfully`;
 }
 
+function createErrorMessage (response) {
+    return `Error for ${response.url} "${response.title}"`;
+}
+
 function UpdateXHR (url) {
     if (validateURL(url)) {
         return Superagent
@@ -18,6 +22,8 @@ function UpdateXHR (url) {
                 var response = res.body;
                 if (response.success) {
                     return createSuccessMessage(response);
+                } else if (response.error) {
+                    throw new Error(createErrorMessage(response));
                 } else {
                     throw new Error('Unexpected error');
                 }

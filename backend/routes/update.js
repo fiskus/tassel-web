@@ -29,8 +29,10 @@ function getTitle (url) {
 
 function Update (req, res) {
     var url = req.body.url;
+    var titleClosure;
     getTitle(url)
         .then(function (title) {
+            titleClosure = title;
             return new DB.Bookmarks({
                 url: url,
                 title: title,
@@ -40,7 +42,14 @@ function Update (req, res) {
         .then(function () {
             renderJson(res, {
                 success: true,
-                title: title,
+                title: titleClosure,
+                url: url
+            });
+        }, function (err) {
+            renderJson(res, {
+                error: true,
+                message: err,
+                title: titleClosure,
                 url: url
             });
         });
