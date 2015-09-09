@@ -11,17 +11,24 @@ function renderJson (res, json) {
 }
 
 function getTitle (url) {
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
         var method = url.indexOf('https://') === 0 ? https : http;
         method.get(url, function (res) {
             var content;
-            res.on('error', reject);
+            res.on('error', function () {
+                resolve(url);
+            });
             res.on('data', function (data) {
                 content += data;
             });
             res.on('end', function () {
-                var title = cheerio.load(content)('title').text();
-                resolve(title);
+                try {
+                    var DOM = cheerio.load(content);
+                    var title = DOM('title').text();
+                    resolve(title);
+                } catch (e) {
+                    resolve(url);
+                }
             });
         });
     });
