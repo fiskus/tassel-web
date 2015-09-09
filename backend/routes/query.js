@@ -16,7 +16,7 @@ function serialize (bookmarks) {
 
 function Query (req, res) {
     if (req.isAuthenticated()) {
-        DB.Bookmarks
+        DB.RootBookmarks
             .where({
                 userId: req.session.passport.user
             })

@@ -19,12 +19,18 @@ var Users = DB.Model.extend({
     idAttribute: 'userId'
 });
 
-var Bookmarks = DB.Model.extend({
-    tableName: 'bookmarks',
-    idAttribute: 'markId'
+var RootBookmarks = DB.Model.extend({
+    tableName: 'rootBookmarks',
+    idAttribute: 'rootMarkId'
+});
+
+var BranchBookmarks = DB.Model.extend({
+    tableName: 'branchBookmarks',
+    idAttribute: 'branchMarkId'
 });
 
 module.exports = {
     Users: Users,
-    Bookmarks: Bookmarks
+    RootBookmarks: RootBookmarks,
+    BranchBookmarks: BranchBookmarks
 };

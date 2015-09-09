@@ -14,15 +14,31 @@ CREATE TABLE IF NOT EXISTS users
     CONSTRAINT pk_users PRIMARY KEY (userId)
 );
 
-DROP TABLE IF EXISTS bookmarks;
+DROP TABLE IF EXISTS rootBookmarks;
 
-CREATE TABLE IF NOT EXISTS bookmarks
+CREATE TABLE IF NOT EXISTS rootBookmarks
 (
-    markId INTEGER AUTO_INCREMENT,
-    url VARCHAR(128) UNIQUE,
+    rootMarkId INTEGER AUTO_INCREMENT,
+    url VARCHAR(128),
     title VARCHAR(256),
     userId INTEGER,
-    CONSTRAINT pk_bookmarks PRIMARY KEY (markId),
-    CONSTRAINT fk_bookmarks_users FOREIGN KEY (userId)
+    CONSTRAINT pk_root_bookmark PRIMARY KEY (rootMarkId),
+    CONSTRAINT fk_rb_user FOREIGN KEY (userId)
         REFERENCES users (userId)
+);
+
+DROP TABLE IF EXISTS branchBookmarks;
+
+CREATE TABLE IF NOT EXISTS branchBookmarks
+(
+    branchMarkId INTEGER AUTO_INCREMENT,
+    url VARCHAR(128),
+    title VARCHAR(256),
+    userId INTEGER,
+    rootMarkId INTEGER,
+    CONSTRAINT pk_branch_bookmark PRIMARY KEY (branchMarkId),
+    CONSTRAINT fk_bb_user FOREIGN KEY (userId)
+        REFERENCES users (userId),
+    CONSTRAINT fk_root_bookmark FOREIGN KEY (rootMarkId)
+        REFERENCES rootBookmarks (rootMarkId)
 );

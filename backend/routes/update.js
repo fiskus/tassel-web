@@ -33,7 +33,7 @@ function Update (req, res) {
     getTitle(url)
         .then(function (title) {
             titleClosure = title;
-            return new DB.Bookmarks({
+            return new DB.RootBookmarks({
                 url: url,
                 title: title,
                 userId: req.session.passport.user
