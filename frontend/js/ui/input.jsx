@@ -1,41 +1,46 @@
 import React from 'react';
-import Actions from '../actions.js';
 
-class InputUI extends React.Component {
+import StateStore from '../stores/statestore.js';
+
+let inputCache = ''
+
+class Input extends React.Component {
     constructror (props) {
         super(props);
-        this.displayName = 'InputUI';
+
+        this.state = {
+            input: ''
+        };
     }
-    _onKeyPress (event) {
-        Actions.onKeyPress({
-            which: event.which,
-            value: event.currentTarget.value
-        });
+
+    _onInput (event) {
+        let value = event.currentTarget.value;
+        if (inputCache === value) {
+            return;
+        }
+        inputCache = value;
+        var update = {
+            input: value
+        }
+        this.setState(update);
+        StateStore.emit('update', update);
     }
-    _onPaste (event) {
-        Actions.onKeyPress({
-            which: null,
-            value: event.currentTarget.value
-        });
-    }
+
     render () {
         return (
             <div className="input-wrapper">
                 <input className="main-input"
-                       ref="input"
-                       type="text"
                        placeholder="Input URL to save or keyword to search"
-                       onKeyDown={this._onKeyPress}
-                       onPaste={this._onPaste}
+                       onKeyUp={this._onInput.bind(this)}
+                       onPaste={this._onInput.bind(this)}
                 />
             </div>
         );
     }
 }
 
-InputUI.propTypes = {
-    ON_KEY: React.PropTypes.func,
-    ON_PASTE: React.PropTypes.func
-};
+Input.displayName = 'Input';
 
-export default InputUI;
+Input.propTypes = {};
+
+export default Input;

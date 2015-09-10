@@ -1,21 +1,43 @@
-import Delorean from 'delorean';
-import BookmarksStore from './stores/bookmarksstore.js';
+import {EventEmitter} from 'events';
 
-var Dispatcher = Delorean.Flux.createDispatcher({
-    setBookmarks (bookmarks) {
-        this.dispatch('bookmarks', bookmarks);
-    },
-    onKeyPress (event) {
-        this.dispatch('onkeypress', event);
-    },
-    onSubmit (event) {
-        this.dispatch('onsubmit', event);
-    },
-    getStores () {
-        return {
-            bookmarks: BookmarksStore
-        };
-    }
-});
+// import BookmarksStore from './stores/bookmarksstore.js';
+// import StateStore from './stores/statestore.js';
+
+let that;
+
+// class Dispatcher {
+//     constructor () {
+//         if (that) {
+//             return that;
+//         }
+
+//         that = this;
+
+//         this.dispatcher = new EventEmitter();
+
+//         return this;
+//     }
+
+//     setBookmarks (bookmarks) {
+//         this.dispatcher.emit('bookmarks', bookmarks);
+//     }
+
+//     onKeyPress (event) {
+//         this.dispatcher.emit('onkeypress', event);
+//     }
+
+//     onSubmit (event) {
+//         this.dispatcher.emit('onsubmit', event);
+//     }
+
+//     // getStores () {
+//     //     return {
+//     //         bookmarks: BookmarksStore,
+//     //         state: StateStore
+//     //     };
+//     // }
+// }
+var Dispatcher = {
+};
 
 export default Dispatcher;

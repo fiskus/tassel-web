@@ -1,29 +1,32 @@
 import React from 'react';
 
-import InputUI from '../ui/input.jsx';
-import Actions from '../actions.js';
+import Input from '../ui/input.jsx';
+import StateStore from '../stores/statestore.js';
 
-var FormUI = React.createClass({
-    displayName: 'FormUI',
+class Form extends React.Component {
+    constructor (props) {
+        super(props);
+    }
+
     _onSubmit (event) {
         event.preventDefault();
-        var input = React.findDOMNode(this.refs.inputWrapper.refs.input);
-        var value = input.value;
-        input.blur();
+        var input = this.refs.input.state.input;
+        StateStore.emit('update', {
+            query: input
+        });
+    }
 
-        Actions.onSubmit({value});
-    },
     render () {
         return (
-            <form onSubmit={this._onSubmit}>
-                <InputUI ref="inputWrapper" />
+            <form onSubmit={this._onSubmit.bind(this)}>
+                <Input ref="input" />
             </form>
         );
     }
-});
+}
 
-FormUI.propTypes = {
-    ON_SUBMIT: React.PropTypes.func
-};
+Form.displayName = 'Form';
 
-export default FormUI;
+Form.propTypes = {};
+
+export default Form;

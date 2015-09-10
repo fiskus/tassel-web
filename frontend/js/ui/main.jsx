@@ -1,24 +1,26 @@
 import React from 'react';
 
-import FormUI from '../ui/form.jsx';
-import ListUI from '../ui/list.jsx';
+import Form from '../ui/form.jsx';
+import List from '../ui/list.jsx';
 
-class MainUI extends React.Component {
+class Main extends React.Component {
     constructror (props) {
         super(props);
-        this.displayName = 'MainUI';
     }
+
     render () {
         return (
             <div className="tassel-main">
-                <FormUI />
-                <ListUI />
+                <Form />
+                <List bookmarks={this.props.bookmarks} />
             </div>
         );
     }
 }
 
-MainUI.propTypes = {
+Main.displayName = 'Main';
+
+Main.propTypes = {
 };
 
-export default MainUI;
+export default Main;
